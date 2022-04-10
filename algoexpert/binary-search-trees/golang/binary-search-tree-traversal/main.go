@@ -3,8 +3,6 @@
 
 package main
 
-import "fmt"
-
 type BST struct {
 	Value int
 
@@ -13,21 +11,34 @@ type BST struct {
 }
 
 func (tree *BST) InOrderTraverse(array []int) []int {
-	// Write your code here.
-	return nil
+	if tree.Left != nil {
+		array = tree.Left.InOrderTraverse(array)
+	}
+	array = append(array, tree.Value)
+	if tree.Right != nil {
+		array = tree.Right.InOrderTraverse(array)
+	}
+	return array
 }
 
 func (tree *BST) PreOrderTraverse(array []int) []int {
-	// Write your code here.
-	return nil
+	array = append(array, tree.Value)
+	if tree.Left != nil {
+		array = tree.Left.PreOrderTraverse(array)
+	}
+	if tree.Right != nil {
+		array = tree.Right.PreOrderTraverse(array)
+	}
+	return array
 }
 
 func (tree *BST) PostOrderTraverse(array []int) []int {
-	// Write your code here.
-	return nil
-}
-
-func main() {
-	fmt.Println(temp_bst)
-	fmt.Println(InOrd)
+	if tree.Left != nil {
+		array = tree.Left.PostOrderTraverse(array)
+	}
+	if tree.Right != nil {
+		array = tree.Right.PostOrderTraverse(array)
+	}
+	array = append(array, tree.Value)
+	return array
 }
